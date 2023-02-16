@@ -15,7 +15,7 @@
     <string name="sub">-</string>
     <string name="divide">/</string>
     <string name="add">+</string>
-    <string name="mul">*</string>
+    <string name="mul">x</string>
     <string name="equal">=</string>
     <string name="dot">.</string>
     <string name="percent">%</string>

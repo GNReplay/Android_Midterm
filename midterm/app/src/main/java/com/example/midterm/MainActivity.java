@@ -95,34 +95,66 @@ public class MainActivity extends AppCompatActivity {
         return a / b;
     }
 
+    public void SetAdd(View view){
+        operator += "+";
+        input += "+";
+        EditText editText = (EditText)findViewById(R.id.edit);
+        editText.setText(input);
+    }
     public void SetSub(View view){
         operator += "-";
         input += "-";
         EditText editText = (EditText)findViewById(R.id.edit);
         editText.setText(input);
     }
+
+    public void SetMul(View view){
+        operator += "x";
+        input += "x";
+        EditText editText = (EditText)findViewById(R.id.edit);
+        editText.setText(input);
+    }
     public void SetCalculate(View view){
-        String[] array = new String[5];
-        if(operator.equals("-")) {
-            array = input.split("\\-");
-        }
-        else if(operator.equals("/")){
-            array = input.split("\\/");
-        }
         EditText editText = (EditText) findViewById(R.id.edit);
-        if(array.length < 2){
+        String[] array = new String[5];
+        if(operator.length() > 1){
+            input = "0";
             editText.setText(input);
         }
-        else {
-            float a = Integer.parseInt(array[0]);
-            float b = Integer.parseInt(array[1]);
+        else{
             if(operator.equals("-")) {
-                input = input + "= " + Round(Sub(a, b));
+                array = input.split("\\-");
             }
             else if(operator.equals("/")){
-                input = input + "= " + Round(Div(a, b));
+                array = input.split("\\/");
             }
-            editText.setText(input);
+            else if(operator.equals("+")){
+                array = input.split("\\+");
+            }
+            else if(operator.equals("x")){
+                array = input.split("x");
+            }
+
+            if(array.length < 2){
+                editText.setText(input);
+            }
+            else {
+                float a = Integer.parseInt(array[0]);
+                float b = Integer.parseInt(array[1]);
+                if(operator.equals("-")) {
+                    input = input + "= " + Round(Sub(a, b));
+                }
+                else if(operator.equals("/")){
+                    input = input + "= " + Round(Div(a, b));
+                }
+                else if(operator.equals("+")){
+                    input = input + " = " + Round(Add(a,b));
+                }
+                else if(operator.equals("x")){
+                    input = input + " = " + Round(Mul(a,b));
+                }
+                editText.setText(input);
+            }
         }
     }
 
